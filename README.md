@@ -1,4 +1,4 @@
-# creando-grupos-de-github-2026_grupo-n-09
+2026_TPIN1_G09
 # Higher or Lower Fútbol
 
 ## Integrantes
