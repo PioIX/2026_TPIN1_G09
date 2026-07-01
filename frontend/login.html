@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Higher or Lower Fútbol</title>
+
     <style>
-        /* Estilos básicos para centrar todo y usar los colores de tu juego */
         body {
             font-family: Arial, sans-serif;
-            background-color: #e5e5e5; /* El gris de fondo de tu juego */
+            background-color: #e5e5e5;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
+
         .contenedor {
             background-color: white;
             padding: 30px;
@@ -23,19 +24,23 @@
             width: 300px;
             text-align: center;
         }
+
         h2 {
-            color: #1e4620; /* El verde oscuro de tu título */
+            color: #1e4620;
             margin-bottom: 20px;
         }
+
         .campo {
             margin-bottom: 15px;
             text-align: left;
         }
+
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
+
         input {
             width: 100%;
             padding: 8px;
@@ -43,84 +48,106 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
+
         .btn-entrar {
             width: 100%;
             padding: 10px;
-            background-color: #2e7d32; /* El verde de tu botón "Vale Más" */
+            background-color: #2e7d32;
             color: white;
             border: none;
             border-radius: 4px;
             font-size: 16px;
             cursor: pointer;
         }
+
         .btn-entrar:hover {
             background-color: #1e4620;
         }
+
         .mensaje-error {
-            color: #c62828; /* El rojo de tu botón "Vale Menos" */
+            color: #c62828;
             margin-top: 15px;
             font-weight: bold;
         }
+
         .registro {
             margin-top: 20px;
             font-size: 14px;
         }
+
         .registro a {
             color: #2e7d32;
             text-decoration: none;
         }
     </style>
 </head>
+
 <body>
 
-    <div class="contenedor">
-        <h2>Login Fútbol</h2>
-        
-        <form id="formularioLogin">
-            <div class="campo">
-                <label>Usuario:</label>
-                <input type="text" id="inputUsuario" required>
-            </div>
-            
-            <div class="campo">
-                <label>Contraseña:</label>
-                <input type="password" id="inputPassword" required>
-            </div>
-            
-            <button type="submit" class="btn-entrar">Iniciar Sesión</button>
-        </form>
+<div class="contenedor">
+    <h2>Login Fútbol</h2>
 
-        <p id="textoError" class="mensaje-error"></p>
-
-        <div class="registro">
-            ¿No tienes cuenta? <a href="#">Regístrate acá</a>
+    <form id="formularioLogin">
+        <div class="campo">
+            <label>Usuario:</label>
+            <input type="text" id="inputUsuario" required>
         </div>
+
+        <div class="campo">
+            <label>Contraseña:</label>
+            <input type="password" id="inputPassword" required>
+        </div>
+
+        <button type="submit" class="btn-entrar">Iniciar Sesión</button>
+    </form>
+
+    <p id="textoError" class="mensaje-error"></p>
+
+    <div class="registro">
+        ¿No tienes cuenta? <a href="#">Regístrate acá</a>
     </div>
+</div>
 
-    <script>
-        // Capturamos el formulario cuando el usuario hace clic en "Iniciar Sesión"
-        document.getElementById('formularioLogin').addEventListener('submit', async (event) => {
-            event.preventDefault(); // Evita que la página se recargue sola
+<script>
+document.getElementById('formularioLogin').addEventListener('submit', async (event) => {
+    event.preventDefault();
 
-            // Guardamos lo que escribió el usuario
-            const usuario = document.getElementById('inputUsuario').value;
-            const password = document.getElementById('inputPassword').value;
-            const textoError = document.getElementById('textoError');
+    const usuario = document.getElementById('inputUsuario').value;
+    const password = document.getElementById('inputPassword').value;
+    const textoError = document.getElementById('textoError');
 
-            // Limpiamos el texto de error por las dudas
-            textoError.textContent = "";
+    textoError.textContent = "";
 
-            try {
-                // Enviamos los datos al backend usando fetch
-                const respuesta = await fetch('http://localhost:3000/api/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ usuario, password })
-                });
+    try {
+        const respuesta = await fetch('http://localhost:3000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ usuario, password })
+        });
 
-                // Convertimos la respuesta del servidor a un objeto de JS
-                const datos = await respuesta.json();
+        const datos = await respuesta.json();
 
-                if (respuesta.ok) }     
+        if (respuesta.ok) {
+            // LOGIN EXITOSO
+            alert("Login correcto");
+            console.log(datos);
+
+            // ejemplo: redirigir
+            // window.location.href = "juego.html";
+
+        } else {
+            // ERROR DEL SERVIDOR
+            textoError.textContent = datos.mensaje || "Usuario o contraseña incorrectos";
+        }
+
+    } catch (error) {
+        textoError.textContent = "Error de conexión con el servidor";
+        console.error(error);
+    }
+});
+</script>
+
+</body>
+</html>
