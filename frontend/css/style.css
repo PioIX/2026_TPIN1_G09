@@ -1,3 +1,139 @@
+<<<<<<< Updated upstream
 body{
     background:#eee;
+=======
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: #d9d9d9;
+}
+
+header{
+    background-color: white;
+    border-bottom: 2px solid black;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1{
+    color: #2e6b2e;
+    font-size: 40px;
+}
+
+.marcador{
+    width: 90%;
+    margin: 30px auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid #bbb;
+}
+
+.marcador h3{
+    font-size: 20px;
+}
+
+.juego{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.jugador{
+    width: 32%;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    text-align: center;
+    padding: 20px;
+}
+
+.jugador img{
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.jugador h2{
+    margin-bottom: 10px;
+    color: #2e6b2e;
+}
+
+.jugador p{
+    margin: 8px;
+    font-size: 18px;
+}
+
+.jugador h3{
+    margin-top: 15px;
+    font-size: 28px;
+    color: #2e6b2e;
+}
+
+.botones{
+    width: 20%;
+    text-align: center;
+}
+
+.botones h1{
+    font-size: 60px;
+    margin-bottom: 40px;
+}
+
+button{
+    width: 180px;
+    height: 50px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    color: white;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#mayor{
+    background-color: #2e6b2e;
+}
+
+#menor{
+    background-color: #c0392b;
+}
+
+button:hover{
+    opacity: 0.8;
+}
+
+@media (max-width: 900px){
+
+    .marcador{
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .juego{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .jugador{
+        width: 90%;
+    }
+
+    .botones{
+        width: 100%;
+    }
+
+>>>>>>> Stashed changes
 }
