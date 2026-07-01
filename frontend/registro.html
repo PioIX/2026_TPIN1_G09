@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #e5e5e5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            width: 280px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            margin: 5px 0;
+            padding: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #msg {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h3>Registro</h3>
+
+    <form id="form">
+        <input type="text" id="user" placeholder="Usuario" required>
+        <input type="password" id="pass" placeholder="Contraseña" required>
+        <input type="password" id="pass2" placeholder="Repetir contraseña" required>
+
+        <button type="submit">Crear cuenta</button>
+    </form>
+
+    <p id="msg"></p>
+</div>
+
+<script>
+const form = document.getElementById("form");
+const msg = document.getElementById("msg");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const user = document.getElementById("user").value;
+    const pass = document.getElementById("pass").value;
+    const pass2 = document.getElementById("pass2").value;
+
+    msg.textContent = "";
+
+    if (pass !== pass2) {
+        msg.textContent = "Las contraseñas no coinciden";
+        msg.style.color = "red";
+        return;
+    }
+
+    const res = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ usuario: user, password: pass })
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+        msg.style.color = "green";
+        msg.textContent = "Usuario creado correctamente";
+
+        setTimeout(() => {
+            window.location.href = "login.html";
+        }, 1500);
+
+    } else {
+        msg.style.color = "red";
+        msg.textContent = data.mensaje || "Error al registrar";
+    }
+});
+</script>
+
+</body>
+</html>
