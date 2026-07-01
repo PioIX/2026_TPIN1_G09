@@ -1,9 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
 <head>
-    <title>Higher or Lower</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higher or Lower Fútbol</title>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    <h1>Higher or Lower Fútbol</h1>
+
+    <header>
+        <h1>Higher or Lower Fútbol</h1>
+    </header>
+
+    <main>
+
+        <section class="marcador">
+
+            <h3>❤️ Vidas: <span id="vidas">3</span></h3>
+
+            <h3>⭐ Puntaje: <span id="puntaje">0</span></h3>
+
+            <h3>🏆 Mejor puntaje: <span id="mejorPuntaje">0</span></h3>
+
+            <h3>🔄 Ronda: <span id="ronda">1</span> / 10</h3>
+
+        </section>
+
+        <section class="juego">
+
+            <div class="jugador">
+
+                <img src="public/jugador1.jpg" alt="Jugador 1" width="220">
+
+                <h2 id="nombre1">Lionel Messi</h2>
+
+                <p id="equipo1">Inter Miami</p>
+
+                <p id="posicion1">Delantero</p>
+
+                <h3 id="valor1">€18.000.000</h3>
+
+            </div>
+
+            <div class="botones">
+
+                <h1>VS</h1>
+
+                <button id="mayor">Vale Más ↑</button>
+
+                <br><br>
+
+                <button id="menor">Vale Menos ↓</button>
+
+            </div>
+
+            <div class="jugador">
+
+                <img src="public/jugador2.jpg" alt="Jugador 2" width="220">
+
+                <h2 id="nombre2">Kylian Mbappé</h2>
+
+                <p id="equipo2">Real Madrid</p>
+
+                <p id="posicion2">Delantero</p>
+
+                <h3>?????</h3>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
+
 </body>
+
 </html>
