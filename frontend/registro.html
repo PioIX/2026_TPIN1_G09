@@ -1,106 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
 
-    <style>
-        body {
-            font-family: Arial;
-            background: #e5e5e5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .box {
-            background: white;
-            padding: 20px;
-            width: 280px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        input {
-            width: 100%;
-            margin: 5px 0;
-            padding: 8px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background: green;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        #msg {
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" href="css/registro.css">
 </head>
 
 <body>
 
-<div class="box">
-    <h3>Registro</h3>
+    <div class="contenedor">
 
-    <form id="form">
-        <input type="text" id="user" placeholder="Usuario" required>
-        <input type="password" id="pass" placeholder="Contraseña" required>
-        <input type="password" id="pass2" placeholder="Repetir contraseña" required>
+        <h1>Higher or Lower</h1>
 
-        <button type="submit">Crear cuenta</button>
-    </form>
+        <h2>Registro</h2>
 
-    <p id="msg"></p>
-</div>
+        <form id="formRegistro">
 
-<script>
-const form = document.getElementById("form");
-const msg = document.getElementById("msg");
+            <label>Nombre</label>
+            <input type="text" id="nombre" required>
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+            <label>Usuario</label>
+            <input type="text" id="usuario" required>
 
-    const user = document.getElementById("user").value;
-    const pass = document.getElementById("pass").value;
-    const pass2 = document.getElementById("pass2").value;
+            <label>Contraseña</label>
+            <input type="password" id="contrasena" required>
 
-    msg.textContent = "";
+            <button type="submit">Registrarse</button>
 
-    if (pass !== pass2) {
-        msg.textContent = "Las contraseñas no coinciden";
-        msg.style.color = "red";
-        return;
-    }
+        </form>
 
-    const res = await fetch("http://localhost:3000/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ usuario: user, password: pass })
-    });
+        <p>
+            ¿Ya tenés una cuenta?
+            <a href="login.html">Iniciar sesión</a>
+        </p>
 
-    const data = await res.json();
+    </div>
 
-    if (res.ok) {
-        msg.style.color = "green";
-        msg.textContent = "Usuario creado correctamente";
-
-        setTimeout(() => {
-            window.location.href = "login.html";
-        }, 1500);
-
-    } else {
-        msg.style.color = "red";
-        msg.textContent = data.mensaje || "Error al registrar";
-    }
-});
-</script>
+    <script src="js/registro.js"></script>
 
 </body>
+
 </html>
