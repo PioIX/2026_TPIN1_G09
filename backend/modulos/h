@@ -3,6 +3,6 @@ PORT=4000
 
 ################## MySQL ##################
 MYSQL_HOST="181.47.29.35"
-MYSQL_USERNAME="5INF-Examenes"
+MYSQL_USERNAME="5INF-examenes"
 MYSQL_DB="5INF-Examenes"
 MYSQL_PASSWORD="examenes"
