@@ -26,108 +26,136 @@ header h1 {
     font-size: 26px;
 }
 
-.stats {
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Marcador */
+.marcador {
     background: white;
     width: 90%;
-    max-width: 500px;
+    max-width: 600px;
     margin-top: 25px;
-    padding: 15px 20px;
+    padding: 15px 25px;
     border-radius: 12px;
     box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 8px;
+    gap: 10px;
 }
 
-.stats p {
-    font-weight: bold;
+.marcador h3 {
     color: #1e4620;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
+    font-size: 15px;
+    font-weight: bold;
 }
 
-.game-container {
+/* Juego */
+.juego {
     background: white;
     width: 90%;
-    max-width: 500px;
+    max-width: 700px;
     margin-top: 20px;
-    padding: 30px;
+    padding: 35px;
     border-radius: 15px;
     box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .jugador {
-    margin-bottom: 15px;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
 }
 
 .jugador img {
-    width: 130px;
-    height: 130px;
+    width: 160px;
+    height: 160px;
     object-fit: cover;
     border-radius: 50%;
     border: 4px solid #1e4620;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .jugador h2 {
     color: #1e4620;
-    font-size: 20px;
-    margin-bottom: 4px;
+    font-size: 19px;
+    margin-bottom: 5px;
 }
 
 .jugador p {
-    color: #555;
+    color: #666;
     font-size: 14px;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
 }
 
-.jugador .precio {
-    font-size: 22px;
-    font-weight: bold;
+.jugador h3 {
     color: #2d6a31;
-    margin-top: 6px;
+    font-size: 20px;
+    margin-top: 10px;
 }
 
-.vs-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-    margin: 20px 0;
-}
-
-.vs {
-    font-size: 26px;
-    font-weight: bold;
-    color: #1e4620;
-}
-
+/* Botones VS */
 .botones {
     display: flex;
-    gap: 15px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 160px;
 }
 
-.btn-opcion {
+.botones h1 {
+    color: #1e4620;
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.botones button {
     background: #1e4620;
     color: white;
     border: none;
-    padding: 12px 24px;
+    padding: 12px 22px;
     border-radius: 10px;
     font-size: 15px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
+    width: 100%;
 }
 
-.btn-opcion:hover {
+.botones button:hover {
     background: #2d6a31;
     transform: translateY(-2px);
 }
 
-.btn-opcion:active {
+.botones button:active {
     transform: translateY(0);
+}
+
+.botones br {
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+    .juego {
+        flex-direction: column;
+    }
+
+    .botones {
+        order: 3;
+        flex-direction: row;
+    }
+
+    .botones h1 {
+        display: none;
+    }
 }
