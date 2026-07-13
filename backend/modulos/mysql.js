@@ -19,4 +19,4 @@ conexion.connect((error)=>{
 
 });
 
-module.exports=conexion
+module.exports=conexion;
