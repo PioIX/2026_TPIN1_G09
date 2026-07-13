@@ -134,12 +134,11 @@ let jugadores = [
         imagen: "public/rice.jpg"
     }
 ];
-    
-
 
 let vidas = 3;
 let puntaje = 0;
 let ronda = 1;
+let mejorPuntaje = 0;
 
 let jugador1;
 let jugador2;
@@ -148,105 +147,24 @@ function numeroAleatorio() {
     return Math.floor(Math.random() * jugadores.length);
 }
 
-function cargarJugadores() {
+function elegirJugadorDistintoDe(...excluidos) {
+    let candidato = jugadores[numeroAleatorio()];
 
-    jugador1 = jugadores[numeroAleatorio()];
-    jugador2 = jugadores[numeroAleatorio()];
-
-    while (jugador1 == jugador2) {
-        jugador2 = jugadores[numeroAleatorio()];
+    while (excluidos.includes(candidato)) {
+        candidato = jugadores[numeroAleatorio()];
     }
 
-    document.getElementById("nombre1").innerHTML = jugador1.nombre;
-    document.getElementById("equipo1").innerHTML = jugador1.equipo;
-    document.getElementById("posicion1").innerHTML = jugador1.posicion;
-    document.getElementById("valor1").innerHTML = "€" + jugador1.valor.toLocaleString();
-    document.querySelectorAll("img")[0].src = jugador1.imagen;
-
-    document.getElementById("nombre2").innerHTML = jugador2.nombre;
-    document.getElementById("equipo2").innerHTML = jugador2.equipo;
-    document.getElementById("posicion2").innerHTML = jugador2.posicion;
-    document.querySelectorAll("img")[1].src = jugador2.imagen;
-
+    return candidato;
 }
 
-function actualizarPantalla() {
+// Se usa al iniciar el juego o después de perder una vida: resetea los 2 jugadores
+function iniciarRonda() {
 
-    document.getElementById("vidas").innerHTML = vidas;
-    document.getElementById("puntaje").innerHTML = puntaje;
-    document.getElementById("ronda").innerHTML = ronda;
+    jugador1 = elegirJugadorDistintoDe();
+    jugador2 = elegirJugadorDistintoDe(jugador1);
 
+    mostrarJugadores();
 }
 
-function verificar(respuesta) {
-
-    let correcto = false;
-
-    if (respuesta == "mayor") {
-
-        if (jugador2.valor >= jugador1.valor) {
-            correcto = true;
-        }
-
-    } else {
-
-        if (jugador2.valor <= jugador1.valor) {
-            correcto = true;
-        }
-
-    }
-
-    if (correcto) {
-
-        puntaje++;
-        ronda++;
-
-        if (puntaje == 10) {
-
-            alert("¡¡GANASTE EL JUEGO!!");
-
-            if(confirm("¿Querés volver a jugar?")){
-                location.reload();
-            }
-
-            return;
-
-        }
-
-    } else {
-
-        vidas--;
-
-        if (vidas == 0) {
-
-            if(confirm("Perdiste. ¿Querés volver a jugar?")){
-                location.reload();
-            }else{
-                window.close();
-            }
-
-            return;
-
-        }
-
-    }
-
-    actualizarPantalla();
-    cargarJugadores();
-
-}
-
-document.getElementById("mayor").addEventListener("click", function(){
-
-    verificar("mayor");
-
-});
-
-document.getElementById("menor").addEventListener("click", function(){
-
-    verificar("menor");
-
-});
-
-actualizarPantalla();
-cargarJugadores();
+// Se usa cuando acertás: el jugador2 (revelado) pasa a jugador1, y entra un desafiante nuevo
+function nuevoRetador() {}
