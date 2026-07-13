@@ -1,134 +1,203 @@
-¨{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-    background-color: #d9d9d9;
+body {
+    background: linear-gradient(135deg, #e8f5e9, #d0e8d2);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #1e4620;
 }
 
-header{
-    background-color: white;
-    border-bottom: 2px solid black;
+/* Header */
+header {
+    width: 100%;
+    background: #1e4620;
     padding: 20px;
+    text-align: center;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    color: white;
+    font-size: 28px;
+    letter-spacing: 1px;
+}
+
+header p {
+    color: #cde5cf;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+/* Contenedor principal del juego */
+.game-container {
+    background: white;
+    width: 90%;
+    max-width: 700px;
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
     text-align: center;
 }
 
-header h1{
-    color: #2e6b2e;
-    font-size: 40px;
-}
-
-.marcador{
-    width: 90%;
-    margin: 30px auto;
-    background-color: white;
-    border-radius: 10px;
-    padding: 15px;
-    display: flex;
-    justify-content: space-around;
-    border: 1px solid #bbb;
-}
-
-.marcador h3{
-    font-size: 20px;
-}
-
-.juego{
-    width: 90%;
-    margin: auto;
+/* Puntaje */
+.score {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 25px;
+    padding: 12px 20px;
+    background: #f1f8f2;
+    border-radius: 10px;
+    border: 1px solid #d0e8d2;
 }
 
-.jugador{
-    width: 32%;
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid #bbb;
-    text-align: center;
+.score span {
+    font-weight: bold;
+    color: #1e4620;
+    font-size: 16px;
+}
+
+/* Tarjetas de jugadores */
+.jugadores {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.jugador-card {
+    background: #fafafa;
+    border: 2px solid #1e4620;
+    border-radius: 14px;
     padding: 20px;
+    width: 45%;
+    min-width: 220px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.jugador img{
-    width: 220px;
-    height: 220px;
+.jugador-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.15);
+}
+
+.jugador-card img {
+    width: 120px;
+    height: 120px;
     object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid #1e4620;
+    margin-bottom: 12px;
 }
 
-.jugador h2{
+.jugador-card h3 {
+    color: #1e4620;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.jugador-card p {
+    color: #555;
+    font-size: 14px;
     margin-bottom: 10px;
-    color: #2e6b2e;
 }
 
-.jugador p{
-    margin: 8px;
-    font-size: 18px;
+.jugador-card .precio {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2d6a31;
 }
 
-.jugador h3{
-    margin-top: 15px;
-    font-size: 28px;
-    color: #2e6b2e;
+/* VS entre tarjetas */
+.vs {
+    align-self: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1e4620;
 }
 
-.botones{
-    width: 20%;
-    text-align: center;
+/* Botones higher / lower */
+.botones {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
-.botones h1{
-    font-size: 60px;
-    margin-bottom: 40px;
-}
-
-button{
-    width: 180px;
-    height: 50px;
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
+.btn-opcion {
+    background: #1e4620;
     color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    margin: 10px;
+    transition: 0.3s;
 }
 
-#mayor{
-    background-color: #2e6b2e;
+.btn-opcion:hover {
+    background: #2d6a31;
+    transform: translateY(-2px);
 }
 
-#menor{
-    background-color: #c0392b;
+.btn-opcion:active {
+    transform: translateY(0);
 }
 
-button:hover{
-    opacity: 0.8;
+/* Mensaje de resultado (correcto/incorrecto) */
+.mensaje {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
-@media (max-width: 900px){
+.mensaje.correcto {
+    color: #2d6a31;
+}
 
-    .marcador{
+.mensaje.incorrecto {
+    color: #b71c1c;
+}
+
+/* Botón de reinicio / volver */
+.btn-secundario {
+    background: white;
+    color: #1e4620;
+    border: 2px solid #1e4620;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.btn-secundario:hover {
+    background: #1e4620;
+    color: white;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .jugadores {
         flex-direction: column;
-        gap: 10px;
-        text-align: center;
+        align-items: center;
     }
 
-    .juego{
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .jugador{
+    .jugador-card {
         width: 90%;
     }
 
-    .botones{
-        width: 100%;
+    .vs {
+        margin: 10px 0;
     }
-
 }
