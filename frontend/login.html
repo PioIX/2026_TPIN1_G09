@@ -93,18 +93,21 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Botón de registro */
+/* Texto + botón de registro */
 .registro {
     margin-top: 20px;
+    font-size: 15px;
+    color: #333;
 }
 
 .btn-registro {
     background: white;
     color: #1e4620;
     border: 2px solid #1e4620;
-    padding: 10px 20px;
+    padding: 6px 14px;
+    margin-left: 6px;
     border-radius: 8px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
@@ -130,3 +133,13 @@ a:hover {
         <input type="password" id="contrasena" name="contrasena" required>
 
         <button type="submit">Iniciar Sesión</button>
+    </form>
+
+    <div class="registro">
+        ¿No tienes cuenta? 
+        <button class="btn-registro" onclick="location.href='registro.html'">Regístrate acá</button>
+    </div>
+</div>
+
+</body>
+</html>
