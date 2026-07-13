@@ -8,7 +8,7 @@ formulario.addEventListener("submit", function(event) {
     const usuario = document.getElementById("usuario").value;
     const contrasena = document.getElementById("contrasena").value;
 
-    fetch("http://localhost:4000/registro", {
+    fetch("http://localhost:3000/registro", {
 
         method: "POST",
 
@@ -33,7 +33,7 @@ formulario.addEventListener("submit", function(event) {
         alert(datos.mensaje);
 
         // Ir al login
-        window.location.href = "login.html";
+        window.location.href = "index.html";
 
     })
 

@@ -1,23 +1,17 @@
-const form = document.getElementById("formularioRegistro");
+const form = document.getElementById("formularioLogin");
 const msg = document.getElementById("textoMensaje");
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const usuario = document.getElementById("inputUsuario").value;
-    const password = document.getElementById("inputPassword").value;
-    const confirmPassword = document.getElementById("inputConfirmPassword").value;
+    const usuario = document.getElementById("usuario").value;
+    const password = document.getElementById("contrasena").value;
 
     msg.textContent = "";
     msg.style.color = "red";
 
-    if (password !== confirmPassword) {
-        msg.textContent = "Las contraseñas no coinciden";
-        return;
-    }
-
     try {
-        const res = await fetch("http://localhost:4000/api/register", {
+        const res = await fetch("http://localhost:4000/api/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -32,14 +26,17 @@ form.addEventListener("submit", async (e) => {
 
         if (res.ok) {
             msg.style.color = "green";
-            msg.textContent = "Usuario creado correctamente";
+            msg.textContent = "Login correcto, redirigiendo...";
+
+            // Guardamos algo de sesión (opcional, útil para el index)
+            localStorage.setItem("usuario", usuario);
 
             setTimeout(() => {
-                window.location.href = "login.html";
-            }, 1500);
+                window.location.href = "index.html";
+            }, 1000);
 
         } else {
-            msg.textContent = data.mensaje || "Error al registrar";
+            msg.textContent = data.mensaje || "Usuario o contraseña incorrectos";
         }
 
     } catch (error) {
