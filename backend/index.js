@@ -27,9 +27,7 @@ conexion.connect(function(error){
 });
 
 
-// ==========================
-// REGISTRO
-// ==========================
+
 
 app.post("/registro", function(req,res){
 
@@ -37,7 +35,7 @@ app.post("/registro", function(req,res){
     const usuario = req.body.usuario;
     const contrasena = req.body.contrasena;
 
-    const sql = "INSERT INTO Usuario(nombre,nombre_usuario,contrasena) VALUES (?,?,?)";
+    const sql = 'INSERT INTO Usuario(nombre, nombre_usuario, contrasena) VALUES ("' + req.body.nombre + '", "' + req.body.usuario + '", "' + req.body.contrasena + '")';
 
     conexion.query(sql,[nombre,usuario,contrasena],function(error){
 
