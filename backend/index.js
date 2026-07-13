@@ -62,3 +62,16 @@ app.get("/jugadores", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor iniciado en http://localhost:${PORT}`);
 });
+app.get("/jugadores", (req, res) => {
+
+    conexion.query("SELECT * FROM Jugador_Futbol", (error, resultados) => {
+
+        if (error) {
+            res.send(error);
+        } else {
+            res.json(resultados);
+        }
+
+    });
+
+});
