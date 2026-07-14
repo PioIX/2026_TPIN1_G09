@@ -4,7 +4,7 @@ let jugadores = [
     { nombre: "Kylian Mbappé", equipo: "Real Madrid", posicion: "Delantero", valor: 180000000, imagen: "img/mbappe.png" },
     { nombre: "Erling Haaland", equipo: "Manchester City", posicion: "Delantero", valor: 180000000, imagen: "img/haaland.jpg" },
     { nombre: "Jude Bellingham", equipo: "Real Madrid", posicion: "Mediocampista", valor: 180000000, imagen: "img/bellingham.jpg" },
-    { nombre: "Vinícius Júnior", equipo: "Real Madrid", posicion: "Delantero", valor: 150000000, imagen: "img/viniciuss.jpg" },
+    { nombre: "Vinícius Júnior", equipo: "Real Madrid", posicion: "Delantero", valor: 150000000, imagen: "img/vinicius.jpg" },
     { nombre: "Lamine Yamal", equipo: "Barcelona", posicion: "Delantero", valor: 180000000, imagen: "img/yamal.jpg" },
     { nombre: "Bukayo Saka", equipo: "Arsenal", posicion: "Delantero", valor: 140000000, imagen: "img/saka.jpg" },
     { nombre: "Phil Foden", equipo: "Manchester City", posicion: "Mediocampista", valor: 130000000, imagen: "img/foden.jpg" },
@@ -18,7 +18,27 @@ let jugadores = [
     { nombre: "Jamal Musiala", equipo: "Bayern Múnich", posicion: "Mediocampista", valor: 130000000, imagen: "img/musiala.jpg" },
     { nombre: "Pedri González", equipo: "Barcelona", posicion: "Mediocampista", valor: 120000000, imagen: "img/pedri.jpg" },
     { nombre: "Julián Álvarez", equipo: "Atlético Madrid", posicion: "Delantero", valor: 90000000, imagen: "img/alvarez.jpg" },
-    { nombre: "Declan Rice", equipo: "Arsenal", posicion: "Mediocampista", valor: 110000000, imagen: "img/rice.jpg" }
+    { nombre: "Declan Rice", equipo: "Arsenal", posicion: "Mediocampista", valor: 110000000, imagen: "img/rice.jpg" },
+        { nombre: "Gavi", equipo: "Barcelona", posicion: "Mediocampista", valor: 90000000, imagen: "img/gavi.jpg" },
+    { nombre: "Federico Valverde", equipo: "Real Madrid", posicion: "Mediocampista", valor: 100000000, imagen: "img/valverde.jpg" },
+    { nombre: "Victor Osimhen", equipo: "Galatasaray", posicion: "Delantero", valor: 70000000, imagen: "img/osimhen.jpg" },
+    { nombre: "Harry Kane", equipo: "Bayern Múnich", posicion: "Delantero", valor: 75000000, imagen: "img/kane.jpg" },
+    { nombre: "Rúben Dias", equipo: "Manchester City", posicion: "Defensor", valor: 75000000, imagen: "img/rubendias.jpg" },
+    { nombre: "William Saliba", equipo: "Arsenal", posicion: "Defensor", valor: 95000000, imagen: "img/saliba.jpg" },
+    { nombre: "Joško Gvardiol", equipo: "Manchester City", posicion: "Defensor", valor: 90000000, imagen: "img/gvardiol.jpg" },
+    { nombre: "Alessandro Bastoni", equipo: "Inter", posicion: "Defensor", valor: 85000000, imagen: "img/bastoni.jpg" },
+    { nombre: "Achraf Hakimi", equipo: "PSG", posicion: "Defensor", valor: 80000000, imagen: "img/hakimi.jpg" },
+    { nombre: "Trent Alexander-Arnold", equipo: "Real Madrid", posicion: "Defensor", valor: 60000000, imagen: "img/trent.jpg" },
+    { nombre: "Theo Hernández", equipo: "Milan", posicion: "Defensor", valor: 55000000, imagen: "img/theo.jpg" },
+    { nombre: "Martin Ødegaard", equipo: "Arsenal", posicion: "Mediocampista", valor: 100000000, imagen: "img/odegaard.jpg" },
+    { nombre: "Bruno Fernandes", equipo: "Manchester United", posicion: "Mediocampista", valor: 60000000, imagen: "img/bruno.jpg" },
+    { nombre: "Lautaro Martínez", equipo: "Inter", posicion: "Delantero", valor: 100000000, imagen: "img/lautaro.jpg" },
+    { nombre: "Cole Palmer", equipo: "Chelsea", posicion: "Mediocampista", valor: 120000000, imagen: "img/palmer.jpg" },
+    { nombre: "Alexander Isak", equipo: "Liverpool", posicion: "Delantero", valor: 140000000, imagen: "img/isak.jpg" },
+    { nombre: "Nico Williams", equipo: "Athletic Bilbao", posicion: "Delantero", valor: 90000000, imagen: "img/nicowilliams.jpg" },
+    { nombre: "Rafael Leão", equipo: "Milan", posicion: "Delantero", valor: 80000000, imagen: "img/leao.jpg" },
+    { nombre: "Enzo Fernández", equipo: "Chelsea", posicion: "Mediocampista", valor: 90000000, imagen: "img/enzo.jpg" },
+    { nombre: "Moisés Caicedo", equipo: "Chelsea", posicion: "Mediocampista", valor: 110000000, imagen: "img/caicedo.jpg" }
 ];
 
 let vidas = 3;
@@ -79,87 +99,48 @@ function verificar(respuesta) {
     let correcto = false;
 
     if (respuesta == "mayor") {
-
-        if (jugador1.valor >= jugador2.valor) {
-            correcto = true;
-        }
-
+        if (jugador1.valor >= jugador2.valor) correcto = true;
     } else {
-
-        if (jugador1.valor <= jugador2.valor) {
-            correcto = true;
-        }
-
+        if (jugador1.valor <= jugador2.valor) correcto = true;
     }
 
-    document.getElementById("valor2").innerHTML =
-        "€" + jugador2.valor.toLocaleString();
+    document.getElementById("valor2").innerHTML = "€" + jugador2.valor.toLocaleString();
 
     if (correcto) {
 
         puntaje++;
         ronda++;
 
-        if (puntaje > mejorPuntaje) {
-            mejorPuntaje = puntaje;
-        }
-
-        actualizarPantalla();
+        if (puntaje > mejorPuntaje) mejorPuntaje = puntaje;
 
         if (puntaje == 10) {
-
-            setTimeout(function () {
-
-                document.getElementById("tituloFinal").innerHTML = "🏆 ¡GANASTE!";
-                document.getElementById("textoFinal").innerHTML =
-                    "Completaste las 10 rondas con un puntaje de " + puntaje + ".";
-
-                document.getElementById("mensajeFinal").classList.remove("oculto");
-
+            actualizarPantalla();
+            setTimeout(() => {
+                alert("¡¡GANASTE EL JUEGO!!");
+                if (confirm("¿Querés volver a jugar?")) location.reload();
             }, 800);
-
             return;
         }
 
-        setTimeout(function () {
-
-            nuevoRetador();
-
-        }, 800);
+        actualizarPantalla();
+        setTimeout(() => { nuevoRetador(); }, 800);
 
     } else {
 
         vidas--;
-
         actualizarPantalla();
 
         if (vidas == 0) {
-
-            setTimeout(function () {
-
-                document.getElementById("tituloFinal").innerHTML = "💀 ¡PERDISTE!";
-                document.getElementById("textoFinal").innerHTML =
-                    "Te quedaste sin vidas. Puntaje final: " + puntaje + ".";
-
-                document.getElementById("mensajeFinal").classList.remove("oculto");
-
+            setTimeout(() => {
+                if (confirm("Perdiste. ¿Querés volver a jugar?")) location.reload();
             }, 800);
-
             return;
         }
 
-        setTimeout(function () {
-
-            iniciarRonda();
-
-        }, 800);
-
+        setTimeout(() => { iniciarRonda(); }, 800);
     }
 
 }
-
-
-    
 
 document.getElementById("mayor").addEventListener("click", function () {
     verificar("mayor");
