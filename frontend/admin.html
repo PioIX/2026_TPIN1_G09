@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Panel Administrador</h1>
+        <button id="btnCerrarSesion">Cerrar sesión</button>
+    </header>
+
+    <main>
+
+        <nav class="pestañas">
+            <button class="tab-btn activo" data-tab="agregar">Agregar jugador</button>
+            <button class="tab-btn" data-tab="editar">Editar / Eliminar jugadores</button>
+            <button class="tab-btn" data-tab="usuarios">Usuarios</button>
+        </nav>
+
+        <!-- ================= AGREGAR ================= -->
+        <section class="tab-contenido" id="tab-agregar">
+
+            <h2>Agregar nuevo jugador</h2>
+
+            <form id="formAgregar">
+
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" required>
+
+                <label for="equipo">Club:</label>
+                <input type="text" id="equipo" required>
+
+                <label for="posicion">Posición:</label>
+                <input type="text" id="posicion" required>
+
+                <label for="valor">Valor de mercado (€):</label>
+                <input type="number" id="valor" required>
+
+                <label for="imagen">Ruta de imagen (ej: img/nombre.jpg):</label>
+                <input type="text" id="imagen" required>
+
+                <button type="submit">Agregar jugador</button>
+
+            </form>
+
+            <p id="mensajeAgregar"></p>
+
+        </section>
+
+        <!-- ================= EDITAR / ELIMINAR ================= -->
+        <section class="tab-contenido oculto" id="tab-editar">
+
+            <h2>Jugadores cargados</h2>
+
+            <table id="tablaJugadores">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Club</th>
+                        <th>Posición</th>
+                        <th>Valor</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTablaJugadores">
+                </tbody>
+            </table>
+
+        </section>
+
+        <!-- ================= USUARIOS ================= -->
+        <section class="tab-contenido oculto" id="tab-usuarios">
+
+            <h2>Usuarios registrados</h2>
+
+            <table id="tablaUsuarios">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Usuario</th>
+                        <th>Mejor puntaje</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTablaUsuarios">
+                </tbody>
+            </table>
+
+        </section>
+
+    </main>
+
+    <!-- Modal de edición -->
+    <div id="modalEditar" class="modal oculto">
+        <div class="modal-contenido">
+
+            <h2>Editar jugador</h2>
+
+            <form id="formEditar">
+                <input type="hidden" id="editarId">
+
+                <label for="editarNombre">Nombre:</label>
+                <input type="text" id="editarNombre" required>
+
+                <label for="editarEquipo">Club:</label>
+                <input type="text" id="editarEquipo" required>
+
+                <label for="editarPosicion">Posición:</label>
+                <input type="text" id="editarPosicion" required>
+
+                <label for="editarValor">Valor de mercado (€):</label>
+                <input type="number" id="editarValor" required>
+
+                <label for="editarImagen">Ruta de imagen:</label>
+                <input type="text" id="editarImagen" required>
+
+                <div class="modal-botones">
+                    <button type="submit">Guardar cambios</button>
+                    <button type="button" id="btnCancelarEditar">Cancelar</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>

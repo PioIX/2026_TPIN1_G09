@@ -1,14 +1,19 @@
 const formulario = document.getElementById("formRegistro");
+const msg = document.getElementById("textoMensaje");
 
 formulario.addEventListener("submit", function(event) {
 
     event.preventDefault();
 
+    const dni = document.getElementById("dni").value;
     const nombre = document.getElementById("nombre").value;
     const usuario = document.getElementById("usuario").value;
     const contrasena = document.getElementById("contrasena").value;
 
-    fetch("http://localhost:3000/registro", {
+    msg.textContent = "";
+    msg.style.color = "red";
+
+    fetch("http://localhost:4000/api/register", {
 
         method: "POST",
 
@@ -17,6 +22,7 @@ formulario.addEventListener("submit", function(event) {
         },
 
         body: JSON.stringify({
+            dni: dni,
             nombre: nombre,
             usuario: usuario,
             contrasena: contrasena
@@ -24,23 +30,34 @@ formulario.addEventListener("submit", function(event) {
 
     })
 
-    .then(function(respuesta) {
-        return respuesta.json();
+    .then(async function(respuesta) {
+        const datos = await respuesta.json();
+        return { ok: respuesta.ok, datos: datos };
     })
 
-    .then(function(datos) {
+    .then(function(resultado) {
 
-        alert(datos.mensaje);
+        if (resultado.ok) {
 
-        // Ir al login
-        window.location.href = "index.html";
+            msg.style.color = "green";
+            msg.textContent = resultado.datos.mensaje;
+
+            setTimeout(function() {
+                window.location.href = "login.html";
+            }, 1500);
+
+        } else {
+
+            msg.textContent = resultado.datos.mensaje || "No se pudo registrar";
+
+        }
 
     })
 
     .catch(function(error) {
 
         console.log(error);
-        alert("Error al registrar el usuario.");
+        msg.textContent = "Error de conexión con el servidor";
 
     });
 

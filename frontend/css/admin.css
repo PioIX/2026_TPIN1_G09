@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #e5e5e5;
+    min-height: 100vh;
+}
+
+header {
+    background: #1e4620;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+}
+
+header h1 {
+    color: white;
+    font-size: 22px;
+}
+
+header button {
+    background: white;
+    color: #1e4620;
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+header button:hover {
+    background: #2d6a31;
+    color: white;
+    border-color: #2d6a31;
+}
+
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* Pestañas */
+.pestañas {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background: white;
+    color: #1e4620;
+    border: 2px solid #1e4620;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab-btn:hover {
+    background: #f1f8f2;
+}
+
+.tab-btn.activo {
+    background: #1e4620;
+    color: white;
+}
+
+.tab-contenido {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.15);
+}
+
+.tab-contenido h2 {
+    color: #1e4620;
+    margin-bottom: 20px;
+}
+
+.oculto {
+    display: none;
+}
+
+/* Formularios */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #bbb;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+input:focus {
+    border: 2px solid #1e4620;
+    outline: none;
+}
+
+form button[type="submit"] {
+    background: #1e4620;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button[type="submit"]:hover {
+    background: #2d6a31;
+}
+
+#mensajeAgregar {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* Tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    font-size: 14px;
+}
+
+th {
+    color: #1e4620;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+td button {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: 0.3s;
+}
+
+.btn-editar {
+    background: #1e4620;
+    color: white;
+}
+
+.btn-editar:hover {
+    background: #2d6a31;
+}
+
+.btn-eliminar {
+    background: white;
+    color: #b71c1c;
+    border: 2px solid #b71c1c !important;
+}
+
+.btn-eliminar:hover {
+    background: #b71c1c;
+    color: white;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-contenido {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 420px;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.3);
+}
+
+.modal-contenido h2 {
+    color: #1e4620;
+    margin-bottom: 20px;
+}
+
+.modal-botones {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-botones button[type="button"] {
+    background: white;
+    color: #1e4620;
+    border: 2px solid #1e4620;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    flex: 1;
+    transition: 0.3s;
+}
+
+.modal-botones button[type="button"]:hover {
+    background: #f1f8f2;
+}
+
+.modal-botones button[type="submit"] {
+    flex: 1;
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 0 10px;
+    }
+
+    .tab-contenido {
+        padding: 20px;
+    }
+}

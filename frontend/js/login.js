@@ -18,21 +18,27 @@ form.addEventListener("submit", async (e) => {
             },
             body: JSON.stringify({
                 usuario,
-                password
+                contrasena: password
             })
         });
 
         const data = await res.json();
 
-        if (res.ok) {
+        if (res.ok && data.acceso) {
+
             msg.style.color = "green";
             msg.textContent = "Login correcto, redirigiendo...";
 
-            // Guardamos algo de sesión (opcional, útil para el index)
-            localStorage.setItem("usuario", usuario);
+            localStorage.setItem("usuario", data.nombre_usuario);
+            localStorage.setItem("id_usuario", data.id_usuario);
+            localStorage.setItem("esAdmin", data.esAdmin);
 
             setTimeout(() => {
-                window.location.href = "index.html";
+                if (data.esAdmin) {
+                    window.location.href = "admin.html";
+                } else {
+                    window.location.href = "index.html";
+                }
             }, 1000);
 
         } else {
