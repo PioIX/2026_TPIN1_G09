@@ -74,6 +74,8 @@ button:hover {
 
 p {
     margin-top: 20px;
+    font-size: 14px;
+    color: #333;
 }
 
 a {
@@ -85,3 +87,29 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+/* Texto + botón de registro */
+.registro {
+    margin-top: 20px;
+    font-size: 15px;
+    color: #333;
+}
+
+.btn-registro {
+    background: white;
+    color: #1e4620;
+    border: 2px solid #1e4620;
+    padding: 6px 14px;
+    margin-left: 6px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-registro:hover {
+    background: #1e4620;
+    color: white;
+}
+
