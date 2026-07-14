@@ -6,7 +6,11 @@
 }
 
 body {
-    background: #e5e5e5;
+    background: linear-gradient(rgba(30, 70, 32, 0.75), rgba(30, 70, 32, 0.85)),
+                url("../img/fondo_cancha.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -37,11 +41,11 @@ main {
 .marcador {
     background: white;
     width: 90%;
-    max-width: 600px;
+    max-width: 800px;
     margin-top: 25px;
-    padding: 15px 25px;
+    padding: 18px 30px;
     border-radius: 12px;
-    box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -50,7 +54,7 @@ main {
 
 .marcador h3 {
     color: #1e4620;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: bold;
 }
 
@@ -58,49 +62,50 @@ main {
 .juego {
     background: white;
     width: 90%;
-    max-width: 700px;
-    margin-top: 20px;
-    padding: 35px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+    max-width: 950px;
+    margin-top: 25px;
+    margin-bottom: 40px;
+    padding: 45px;
+    border-radius: 18px;
+    box-shadow: 0px 8px 30px rgba(0,0,0,0.25);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
 }
 
 .jugador {
     flex: 1;
-    min-width: 200px;
+    min-width: 260px;
     text-align: center;
 }
 
 .jugador img {
-    width: 160px;
-    height: 160px;
+    width: 210px;
+    height: 210px;
     object-fit: cover;
     border-radius: 50%;
-    border: 4px solid #1e4620;
-    margin-bottom: 15px;
+    border: 5px solid #1e4620;
+    margin-bottom: 18px;
 }
 
 .jugador h2 {
     color: #1e4620;
-    font-size: 19px;
-    margin-bottom: 5px;
+    font-size: 24px;
+    margin-bottom: 6px;
 }
 
 .jugador p {
     color: #666;
-    font-size: 14px;
-    margin-bottom: 3px;
+    font-size: 16px;
+    margin-bottom: 4px;
 }
 
 .jugador h3 {
     color: #2d6a31;
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 26px;
+    margin-top: 12px;
 }
 
 /* Botones VS */
@@ -108,23 +113,23 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    min-width: 160px;
+    gap: 12px;
+    min-width: 190px;
 }
 
 .botones h1 {
     color: #1e4620;
-    font-size: 30px;
-    margin-bottom: 5px;
+    font-size: 36px;
+    margin-bottom: 8px;
 }
 
 .botones button {
     background: #1e4620;
     color: white;
     border: none;
-    padding: 12px 22px;
+    padding: 14px 26px;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
@@ -148,6 +153,7 @@ main {
 @media (max-width: 650px) {
     .juego {
         flex-direction: column;
+        padding: 30px;
     }
 
     .botones {
@@ -158,4 +164,73 @@ main {
     .botones h1 {
         display: none;
     }
+
+    .jugador img {
+        width: 160px;
+        height: 160px;
+    }
+}
+/* ===========================
+   POPUP FINAL DEL JUEGO
+=========================== */
+
+.oculto {
+    display: none;
+}
+
+#mensajeFinal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.75);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+#mensajeFinal.oculto {
+    display: none;
+}
+
+.mensaje {
+    width: 420px;
+    background: white;
+    border-radius: 18px;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0px 8px 30px rgba(0,0,0,.4);
+}
+
+.mensaje h1 {
+    color: #1e4620;
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+.mensaje p {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+.mensaje button {
+    background: #1e4620;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.mensaje button:hover {
+    background: #2d6a31;
+    transform: scale(1.05);
 }

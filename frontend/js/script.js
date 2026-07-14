@@ -4,7 +4,7 @@ let jugadores = [
     { nombre: "Kylian Mbappé", equipo: "Real Madrid", posicion: "Delantero", valor: 180000000, imagen: "img/mbappe.png" },
     { nombre: "Erling Haaland", equipo: "Manchester City", posicion: "Delantero", valor: 180000000, imagen: "img/haaland.jpg" },
     { nombre: "Jude Bellingham", equipo: "Real Madrid", posicion: "Mediocampista", valor: 180000000, imagen: "img/bellingham.jpg" },
-    { nombre: "Vinícius Júnior", equipo: "Real Madrid", posicion: "Delantero", valor: 150000000, imagen: "img/vinicius.jpg" },
+    { nombre: "Vinícius Júnior", equipo: "Real Madrid", posicion: "Delantero", valor: 150000000, imagen: "img/viniciuss.jpg" },
     { nombre: "Lamine Yamal", equipo: "Barcelona", posicion: "Delantero", valor: 180000000, imagen: "img/yamal.jpg" },
     { nombre: "Bukayo Saka", equipo: "Arsenal", posicion: "Delantero", valor: 140000000, imagen: "img/saka.jpg" },
     { nombre: "Phil Foden", equipo: "Manchester City", posicion: "Mediocampista", valor: 130000000, imagen: "img/foden.jpg" },
@@ -79,48 +79,87 @@ function verificar(respuesta) {
     let correcto = false;
 
     if (respuesta == "mayor") {
-        if (jugador2.valor >= jugador1.valor) correcto = true;
+
+        if (jugador1.valor >= jugador2.valor) {
+            correcto = true;
+        }
+
     } else {
-        if (jugador2.valor <= jugador1.valor) correcto = true;
+
+        if (jugador1.valor <= jugador2.valor) {
+            correcto = true;
+        }
+
     }
 
-    document.getElementById("valor2").innerHTML = "€" + jugador2.valor.toLocaleString();
+    document.getElementById("valor2").innerHTML =
+        "€" + jugador2.valor.toLocaleString();
 
     if (correcto) {
 
         puntaje++;
         ronda++;
 
-        if (puntaje > mejorPuntaje) mejorPuntaje = puntaje;
-
-        if (puntaje == 10) {
-            actualizarPantalla();
-            setTimeout(() => {
-                alert("¡¡GANASTE EL JUEGO!!");
-                if (confirm("¿Querés volver a jugar?")) location.reload();
-            }, 800);
-            return;
+        if (puntaje > mejorPuntaje) {
+            mejorPuntaje = puntaje;
         }
 
         actualizarPantalla();
-        setTimeout(() => { nuevoRetador(); }, 800);
+
+        if (puntaje == 10) {
+
+            setTimeout(function () {
+
+                document.getElementById("tituloFinal").innerHTML = "🏆 ¡GANASTE!";
+                document.getElementById("textoFinal").innerHTML =
+                    "Completaste las 10 rondas con un puntaje de " + puntaje + ".";
+
+                document.getElementById("mensajeFinal").classList.remove("oculto");
+
+            }, 800);
+
+            return;
+        }
+
+        setTimeout(function () {
+
+            nuevoRetador();
+
+        }, 800);
 
     } else {
 
         vidas--;
+
         actualizarPantalla();
 
         if (vidas == 0) {
-            setTimeout(() => {
-                if (confirm("Perdiste. ¿Querés volver a jugar?")) location.reload();
+
+            setTimeout(function () {
+
+                document.getElementById("tituloFinal").innerHTML = "💀 ¡PERDISTE!";
+                document.getElementById("textoFinal").innerHTML =
+                    "Te quedaste sin vidas. Puntaje final: " + puntaje + ".";
+
+                document.getElementById("mensajeFinal").classList.remove("oculto");
+
             }, 800);
+
             return;
         }
 
-        setTimeout(() => { iniciarRonda(); }, 800);
+        setTimeout(function () {
+
+            iniciarRonda();
+
+        }, 800);
+
     }
 
 }
+
+
+    
 
 document.getElementById("mayor").addEventListener("click", function () {
     verificar("mayor");
