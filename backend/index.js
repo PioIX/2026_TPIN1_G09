@@ -12,7 +12,7 @@ const conexion = mysql.createConnection({
     user: "2026_5INF_G09",
     password: "brbr",   
     database: "2026_5INF_G09"   
-});
+}); 
 
 conexion.connect(function(error){
     if(error){
@@ -37,6 +37,7 @@ app.post("/api/register", function(req,res){
     conexion.query(sqlVerificar, [usuario, dni], function(error, resultado){
 
         if(error){
+            console.log("ERROR EN VERIFICAR:", error);
             return res.status(500).json({ mensaje: "Error al verificar usuario" });
         }
 
@@ -49,6 +50,7 @@ app.post("/api/register", function(req,res){
         conexion.query(sqlInsertar, [dni, nombre, usuario, contrasena], function(error){
 
             if(error){
+                console.log("ERROR EN INSERTAR:", error);
                 return res.status(500).json({ mensaje: "Error al registrar" });
             }
 
