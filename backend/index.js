@@ -8,20 +8,19 @@ app.use(cors());
 app.use(express.json());
 
 const conexion = mysql.createConnection({
-    host: "localhost",
-    user: "root",
+    host: "10.1.5.205",
+    user: "2026_5INF_G09",
     password: "brbr",   
     database: "2026_5INF_G09"   
 });
 
 conexion.connect(function(error){
     if(error){
-        console.log("Error al conectar con MySQL:", error.message);
+        console.log("ERROR COMPLETO:", error);
     }else{
         console.log("Base de datos conectada");
     }
 });
-
 // ==========================
 // REGISTRO (con validación de duplicados)
 // ==========================
