@@ -10,8 +10,8 @@ app.use(express.json());
 const conexion = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "",   // poné acá la contraseña real que le pusiste a root en MySQL Workbench
-    database: "higher_or_lower"  // poné acá el nombre real de tu base (schema) en Workbench
+    password: "brbr",   
+    database: "2026_5INF_G09"   
 });
 
 conexion.connect(function(error){
@@ -118,7 +118,7 @@ app.get("/api/jugadores", function(req,res){
 });
 
 // ==========================
-// JUGADORES (admin: CRUD)
+// JUGADORES (admin: agregar)
 // ==========================
 
 app.post("/api/jugadores", function(req,res){
@@ -136,7 +136,129 @@ app.post("/api/jugadores", function(req,res){
 
 });
 
+// ==========================
+// JUGADORES (admin: editar)
+// ==========================
+
 app.put("/api/jugadores/:id", function(req,res){
 
     const id = req.params.id;
-    const { nombre, equipo, posicion, valor_mercado, imagen
+    const { nombre, equipo, posicion, valor_mercado, imagen } = req.body;
+
+    const sql = "UPDATE jugador_futbol SET nombre=?, equipo=?, posicion=?, valor_mercado=?, imagen=? WHERE id=?";
+
+    conexion.query(sql, [nombre, equipo, posicion, valor_mercado, imagen, id], function(error){
+        if(error){
+            return res.status(500).json({ success:false, mensaje:"No se pudo editar" });
+        }
+        res.json({ success:true, mensaje:"Jugador actualizado" });
+    });
+
+});
+
+// ==========================
+// JUGADORES (admin: eliminar)
+// ==========================
+
+app.delete("/api/jugadores/:id", function(req,res){
+
+    const id = req.params.id;
+
+    conexion.query("DELETE FROM jugador_futbol WHERE id=?", [id], function(error){
+        if(error){
+            return res.status(500).json({ success:false, mensaje:"No se pudo eliminar" });
+        }
+        res.json({ success:true, mensaje:"Jugador eliminado" });
+    });
+
+});
+
+// ==========================
+// GUARDAR PARTIDA / PUNTAJE
+// ==========================
+
+app.post("/api/partida", function(req,res){
+
+    const id_usuario = req.body.id_usuario;
+    const puntaje = req.body.puntaje;
+
+    const sqlPartida = "INSERT INTO partida (id_usuario, puntaje) VALUES (?,?)";
+
+    conexion.query(sqlPartida, [id_usuario, puntaje], function(error){
+
+        if(error){
+            return res.status(500).json({ mensaje: "Error al guardar partida" });
+        }
+
+        const sqlMejor = "UPDATE usuario SET puntaje=? WHERE id=? AND puntaje<?";
+
+        conexion.query(sqlMejor, [puntaje, id_usuario, puntaje], function(){
+            res.json({ mensaje: "Puntaje guardado" });
+        });
+
+    });
+
+});
+
+// ==========================
+// RANKING / MEJORES PUNTAJES
+// ==========================
+
+app.get("/api/ranking", function(req,res){
+
+    const sql = `
+        SELECT nombre_usuario, puntaje
+        FROM usuario
+        ORDER BY puntaje DESC
+        LIMIT 10
+    `;
+
+    conexion.query(sql, function(error, resultado){
+        if(error){
+            return res.json([]);
+        }
+        res.json(resultado);
+    });
+
+});
+
+// ==========================
+// USUARIOS (admin: listar todos)
+// ==========================
+
+app.get("/api/usuarios", function(req,res){
+
+    conexion.query("SELECT id, dni, nombre, nombre_usuario, puntaje FROM usuario", function(error, resultado){
+        if(error){
+            return res.json([]);
+        }
+        res.json(resultado);
+    });
+
+});
+
+// ==========================
+// USUARIOS (admin: eliminar)
+// ==========================
+
+app.delete("/api/usuarios/:id", function(req,res){
+
+    const id = req.params.id;
+
+    conexion.query("DELETE FROM usuario WHERE id=?", [id], function(error){
+        if(error){
+            return res.status(500).json({ success:false, mensaje:"No se pudo eliminar" });
+        }
+        res.json({ success:true, mensaje:"Usuario eliminado" });
+    });
+
+});
+
+// ==========================
+// SERVIDOR
+// ==========================
+
+app.listen(4000, function(){
+    console.log("Servidor iniciado en http://localhost:4000");
+});
+
