@@ -96,6 +96,9 @@ function actualizarPantalla() {
 
 function verificar(respuesta) {
 
+    document.getElementById("mayor").disabled = true;
+    document.getElementById("menor").disabled = true;
+
     let correcto = false;
 
     if (respuesta == "mayor") {
@@ -123,23 +126,34 @@ function verificar(respuesta) {
         }
 
         actualizarPantalla();
-        setTimeout(() => { nuevoRetador(); }, 800);
+        setTimeout(() => {
+            nuevoRetador();
+            habilitarBotones();
+        }, 800);
 
     } else {
 
         vidas--;
         actualizarPantalla();
 
-        if (vidas == 0) {
+        if (vidas <= 0) {
             setTimeout(() => {
                 if (confirm("Perdiste. ¿Querés volver a jugar?")) location.reload();
             }, 800);
             return;
         }
 
-        setTimeout(() => { iniciarRonda(); }, 800);
+        setTimeout(() => {
+            iniciarRonda();
+            habilitarBotones();
+        }, 800);
     }
 
+}
+
+function habilitarBotones() {
+    document.getElementById("mayor").disabled = false;
+    document.getElementById("menor").disabled = false;
 }
 
 document.getElementById("mayor").addEventListener("click", function () {
