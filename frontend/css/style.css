@@ -18,6 +18,7 @@ body {
 }
 
 header {
+    position: relative;
     width: 100%;
     background: #1e4620;
     padding: 20px;
@@ -28,6 +29,32 @@ header {
 header h1 {
     color: white;
     font-size: 26px;
+}
+
+#btnAdmin {
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    background: white;
+    color: #1e4620;
+    border: 2px solid white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btnAdmin:hover {
+    background: #2d6a31;
+    color: white;
+    border-color: #2d6a31;
+}
+
+#btnAdmin.oculto {
+    display: none;
 }
 
 main {
@@ -145,8 +172,119 @@ main {
     transform: translateY(0);
 }
 
+.botones button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .botones br {
     display: none;
+}
+
+/* Modal de resultado */
+.modal-juego {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-juego.oculto {
+    display: none;
+}
+
+.modal-juego-contenido {
+    background: white;
+    padding: 35px;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 350px;
+    width: 90%;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.3);
+}
+
+.modal-juego-contenido h2 {
+    color: #1e4620;
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.modal-juego-contenido p {
+    color: #444;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.modal-juego-botones {
+    display: flex;
+    gap: 12px;
+}
+
+.modal-juego-botones button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+#btnReintentar {
+    background: #1e4620;
+    color: white;
+}
+
+#btnReintentar:hover {
+    background: #2d6a31;
+}
+
+#btnSalir {
+    background: white;
+    color: #1e4620;
+    border: 2px solid #1e4620 !important;
+}
+
+#btnSalir:hover {
+    background: #f1f8f2;
+}
+
+/* Ranking dentro del modal */
+.ranking {
+    margin: 15px 0;
+    text-align: left;
+}
+
+.ranking h3 {
+    color: #1e4620;
+    font-size: 16px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+#tablaRanking {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#tablaRanking td {
+    padding: 6px 8px;
+    font-size: 14px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+
+#tablaRanking td:last-child {
+    text-align: right;
+    font-weight: bold;
+    color: #2d6a31;
 }
 
 /* Responsive */
@@ -169,68 +307,4 @@ main {
         width: 160px;
         height: 160px;
     }
-}
-/* ===========================
-   POPUP FINAL DEL JUEGO
-=========================== */
-
-.oculto {
-    display: none;
-}
-
-#mensajeFinal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.75);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    z-index: 9999;
-}
-
-#mensajeFinal.oculto {
-    display: none;
-}
-
-.mensaje {
-    width: 420px;
-    background: white;
-    border-radius: 18px;
-    padding: 35px;
-    text-align: center;
-    box-shadow: 0px 8px 30px rgba(0,0,0,.4);
-}
-
-.mensaje h1 {
-    color: #1e4620;
-    font-size: 34px;
-    margin-bottom: 15px;
-}
-
-.mensaje p {
-    font-size: 20px;
-    color: #555;
-    margin-bottom: 25px;
-}
-
-.mensaje button {
-    background: #1e4620;
-    color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 10px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: .3s;
-}
-
-.mensaje button:hover {
-    background: #2d6a31;
-    transform: scale(1.05);
 }
