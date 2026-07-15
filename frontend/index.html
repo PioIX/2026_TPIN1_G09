@@ -13,6 +13,7 @@
 
     <header>
         <h1>Higher or Lower Fútbol</h1>
+        <button id="btnAdmin" class="oculto">Panel Admin</button>
     </header>
 
     <main>
@@ -35,13 +36,13 @@
 
                 <img src="img/messi.jpg" alt="Jugador 1" width="220">
 
-                <h2 id="nombre1">Lionel Messi</h2>
+                <h2 id="nombre1">Cargando...</h2>
 
-                <p id="equipo1">Inter Miami</p>
+                <p id="equipo1"></p>
 
-                <p id="posicion1">Delantero</p>
+                <p id="posicion1"></p>
 
-                <h3 id="valor1">€18.000.000</h3>
+                <h3 id="valor1"></h3>
 
             </div>
 
@@ -61,11 +62,11 @@
 
                 <img src="img/mbappe.png" alt="Jugador 2" width="220">
 
-                <h2 id="nombre2">Kylian Mbappé</h2>
+                <h2 id="nombre2">Cargando...</h2>
 
-                <p id="equipo2">Real Madrid</p>
+                <p id="equipo2"></p>
 
-                <p id="posicion2">Delantero</p>
+                <p id="posicion2"></p>
 
                 <h3 id="valor2">?????</h3>
 
@@ -74,6 +75,26 @@
         </section>
 
     </main>
+
+    <div id="modalResultado" class="modal-juego oculto">
+        <div class="modal-juego-contenido">
+            <h2 id="modalTitulo">¡Perdiste!</h2>
+            <p id="modalMensaje">¿Querés volver a jugar?</p>
+
+            <div class="ranking">
+                <h3>🏆 Mejores puntajes</h3>
+                <table id="tablaRanking">
+                    <tbody id="cuerpoRanking">
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-juego-botones">
+                <button id="btnReintentar">Jugar de nuevo</button>
+                <button id="btnSalir">Salir</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/script.js"></script>
 
